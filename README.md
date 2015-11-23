@@ -1,6 +1,6 @@
 # CustomLeftSlideMenu
 
-![gifImage](https://github.com/#fengyang0329/CustomLeftSlideMenu/raw/master/leftMenuExhibition.gif)
+![gifImage](https://github.com/fengyang0329/CustomLeftSlideMenu/raw/master/leftMenuExhibition.gif)
 
 
 闲暇之余，自己写了一个侧滑的Demo,写的可能不是很完美，如果有什么问题请联系我
