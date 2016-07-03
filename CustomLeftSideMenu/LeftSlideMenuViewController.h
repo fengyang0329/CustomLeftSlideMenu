@@ -25,6 +25,9 @@
 @property(nonatomic,strong)UIImage *backgroundImage;
 @property(nonatomic,assign)BOOL scaleBackgroundImageView;
 
+//背景缩放方式，默认由大变小，NO:由小变大，
+@property(nonatomic,assign)BOOL bgZoomSmaller;
+
 
 /**
  *  是否开启左滑手势，默认开启

@@ -66,6 +66,7 @@
     _percentOfMenu = kDefaultPercentOfMenu;
     _distanceVariable = 0;
     _menuStartCentreX = 30;
+    _bgZoomSmaller = YES;
 }
 
 - (instancetype)initWithContentViewController:(UIViewController *)contentViewController
@@ -106,10 +107,7 @@
         [_leftMenuViewController.view setBackgroundColor:[UIColor clearColor]];
         [_menuViewContainer addSubview:_leftMenuViewController.view];
         [_leftMenuViewController didMoveToParentViewController:self];
-        _menuViewContainer.transform = CGAffineTransformMakeScale(kMenuMinScale, kMenuMinScale);
-        _menuViewContainer.center = CGPointMake(0, kScreenHeight/2);
-        
-        
+ 
         //蒙版
         UIView *view = [[UIView alloc] init];
         view.frame = self.view.bounds;
@@ -136,6 +134,8 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     pan.delegate = self;
     [_contentViewController.view addGestureRecognizer:pan];
+    
+    [self hideLeftMenuViewControllerWithAnimationDuration:0];
 }
 
 
@@ -151,7 +151,7 @@
     }
     _visible = YES;
     [self postNSNotification:LeftSlideMenuWillShowNotification];
-//    [_leftMenuViewController beginAppearanceTransition:YES animated:YES];
+    [_leftMenuViewController beginAppearanceTransition:YES animated:YES];
     [self.view.window endEditing:YES];
     [UIView animateWithDuration:duration animations:^{
         
@@ -165,7 +165,8 @@
         
         if (self.scaleBackgroundImageView)
         {
-            _backgroundImageView.transform = CGAffineTransformMakeScale(kBgImageMaxScale, kBgImageMaxScale);
+            CGFloat scale = _bgZoomSmaller?1:kBgImageMaxScale;
+            _backgroundImageView.transform = CGAffineTransformMakeScale(scale, scale);
         }
         
     } completion:^(BOOL finished) {
@@ -173,7 +174,7 @@
         _distanceVariable = kScreenWidth*self.contentViewScaleValue;
         [self addContentCoverView];
         [self postNSNotification:LeftSlideMenuDidShowNotification];
-//        [_leftMenuViewController endAppearanceTransition];
+        [_leftMenuViewController endAppearanceTransition];
     }];
 
 }
@@ -203,7 +204,8 @@
         _menuAlphView.alpha = kMenuMaxAlpha;
         if (self.scaleBackgroundImageView)
         {
-            _backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
+            CGFloat scale = _bgZoomSmaller?kBgImageMaxScale:1;
+            _backgroundImageView.transform = CGAffineTransformMakeScale(scale, scale);
         }
         
     } completion:^(BOOL finished) {
@@ -321,11 +323,6 @@
         return;
     }
     CGFloat dis = self.distanceVariable + point.x;
-    CGFloat maxDis = kScreenWidth/2 + kScreenWidth*(1-self.percentOfMenu)/2;
-    if (dis > maxDis)
-    {
-        dis = maxDis;
-    }
     // 当手势停止时执行操作
     if (pangesture.state == UIGestureRecognizerStateEnded)
     {
@@ -340,11 +337,6 @@
             CGFloat duration = CGRectGetMinX(_contentViewContainer.frame)/kScreenWidth*_animationDuration;
             [self hideLeftMenuViewControllerWithAnimationDuration:duration];
         }
-        return;
-    }
-    CGFloat proportion = (_contentViewScaleValue - 1) * dis / (kScreenWidth *_contentViewScaleValue) + 1;
-    if (proportion < _contentViewScaleValue || proportion > 1)
-    {
         return;
     }
     if (pangesture.state == UIGestureRecognizerStateBegan)
@@ -366,24 +358,37 @@
     }
     CGFloat centreX = self.view.center.x+dis;
     centreX = centreX >= _contentMaxCentreX?_contentMaxCentreX:centreX;
+    centreX = centreX <= self.view.center.x?self.view.center.x:centreX;
+
+    dis = (centreX-self.view.center.x);
+    CGFloat proportion = dis/(_contentMaxCentreX-CGRectGetMidX(self.view.frame))*(_contentViewScaleValue-1)+1;
     _contentViewContainer.center = CGPointMake(centreX, kScreenHeight/2);
     _contentViewContainer.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
     
     _menuAlphView.alpha = kMenuMaxAlpha-dis/(kScreenWidth*self.percentOfMenu);
     [self addContentCoverView];
-
-    CGFloat menuProportion = dis * (1 - kMenuMinScale) / (kScreenWidth * self.percentOfMenu) + kMenuMinScale;
-    CGFloat menuCenterMove = dis * (self.menuEndCentreX - self.menuStartCentreX) / (kScreenWidth * self.percentOfMenu);
-    menuCenterMove = menuCenterMove+_menuStartCentreX;
-    menuCenterMove = menuCenterMove>=_menuEndCentreX?_menuEndCentreX:menuCenterMove;
-    menuProportion = menuProportion>1?1:menuProportion;
-    _menuViewContainer.center = CGPointMake(menuCenterMove, kScreenHeight/2);
+    CGFloat menuCenterX = _menuStartCentreX+dis/2;
+    menuCenterX = menuCenterX>=_menuEndCentreX?_menuEndCentreX:menuCenterX;
+    menuCenterX = menuCenterX<=_menuStartCentreX?_menuStartCentreX:menuCenterX;
+    
+    CGFloat menuProportion = dis/2/(_menuEndCentreX-_menuStartCentreX)*(1-kMenuMinScale)+kMenuMinScale;
+    menuProportion = menuProportion>=1?1:menuProportion;
+    menuProportion = menuProportion<=kMenuMinScale?kMenuMinScale:menuProportion;
+    _menuViewContainer.center = CGPointMake(menuCenterX, kScreenHeight/2);
     _menuViewContainer.transform = CGAffineTransformMakeScale(menuProportion, menuProportion);
 
     //背景图片设置缩放动画
     if (self.scaleBackgroundImageView)
     {
-        CGFloat bgScale = (kBgImageMaxScale-1)*menuProportion+1;
+        CGFloat bgScale = 1;
+        if (self.bgZoomSmaller) {
+            
+           bgScale = kBgImageMaxScale-(kBgImageMaxScale-1)*menuProportion;
+        }else{
+            
+           bgScale = (kBgImageMaxScale-1)*menuProportion+1;
+
+        }
         _backgroundImageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, bgScale, bgScale);
     }
 }

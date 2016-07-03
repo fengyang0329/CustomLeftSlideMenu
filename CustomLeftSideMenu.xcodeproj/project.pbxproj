@@ -182,7 +182,7 @@
 				TargetAttributes = {
 					D090D3241BFD65530075C72E = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 8Y885F5UDA;
+						DevelopmentTeam = D4GSYVE6CN;
 					};
 					D090D33D1BFD65530075C72E = {
 						CreatedOnToolsVersion = 7.1;
@@ -350,7 +350,7 @@
 				INFOPLIST_FILE = CustomLeftSideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Peter.CustomLeftSideMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mysoft.CustomLeftSideMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -364,7 +364,7 @@
 				INFOPLIST_FILE = CustomLeftSideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Peter.CustomLeftSideMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mysoft.CustomLeftSideMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

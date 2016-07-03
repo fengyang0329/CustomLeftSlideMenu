@@ -69,9 +69,6 @@
     PushViewController *ctr = [[PushViewController alloc] init];
     ctr.title = [NSString stringWithFormat:@"cell%zi",indexPath.row];
     [self pushLeftMenuViewController:ctr animated:YES];
-//    AppDelegate *tmpAppDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [tmpAppDelegate.navigationController pushViewController:ctr animated:YES];
-////    [self.navigationController pushViewController:ctr animated:YES];
 }
 
 
