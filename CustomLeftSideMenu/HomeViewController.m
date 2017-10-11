@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "UIViewController+LeftSlideMenu.h"
+#import "UIViewController+SlideMenu.h"
 #import "PushViewController.h"
 
 @interface HomeViewController ()
@@ -27,11 +27,16 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(func:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"right"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(funRight:)];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:@"push to other viewController" forState:UIControlStateNormal];
     [btn setBackgroundColor:[UIColor redColor]];
     btn.translatesAutoresizingMaskIntoConstraints = NO;
+    btn.userInteractionEnabled = YES;
     [btn addTarget:self action:@selector(btn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
@@ -53,7 +58,10 @@
 {
     [self showLeftMenuViewController];
 }
-
+- (void)funRight:(UIBarButtonItem *)item
+{
+    [self showRightMenuViewController];
+}
 
 - (void)willShowLeftMenuController
 {

@@ -12,10 +12,11 @@
 		D090D3301BFD65530075C72E /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D32F1BFD65530075C72E /* LeftViewController.m */; };
 		D090D3351BFD65530075C72E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D090D3341BFD65530075C72E /* Assets.xcassets */; };
 		D090D3431BFD65530075C72E /* CustomLeftSideMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D3421BFD65530075C72E /* CustomLeftSideMenuTests.m */; };
-		D090D3521BFD700C0075C72E /* LeftSlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D3511BFD700C0075C72E /* LeftSlideMenuViewController.m */; };
+		D090D3521BFD700C0075C72E /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D3511BFD700C0075C72E /* SlideMenuViewController.m */; };
 		D090D3551BFD7B620075C72E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D3541BFD7B620075C72E /* HomeViewController.m */; };
-		D090D3591BFDAE910075C72E /* UIViewController+LeftSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D3581BFDAE910075C72E /* UIViewController+LeftSlideMenu.m */; };
+		D090D3591BFDAE910075C72E /* UIViewController+SlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D3581BFDAE910075C72E /* UIViewController+SlideMenu.m */; };
 		D090D35C1BFDD53A0075C72E /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D090D35B1BFDD53A0075C72E /* PushViewController.m */; };
+		D0C6A3EE1F8B607F000FABF9 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C6A3ED1F8B607F000FABF9 /* RightViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,14 +41,16 @@
 		D090D33E1BFD65530075C72E /* CustomLeftSideMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomLeftSideMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D090D3421BFD65530075C72E /* CustomLeftSideMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomLeftSideMenuTests.m; sourceTree = "<group>"; };
 		D090D3441BFD65530075C72E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D090D3501BFD700C0075C72E /* LeftSlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSlideMenuViewController.h; sourceTree = "<group>"; };
-		D090D3511BFD700C0075C72E /* LeftSlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSlideMenuViewController.m; sourceTree = "<group>"; };
+		D090D3501BFD700C0075C72E /* SlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
+		D090D3511BFD700C0075C72E /* SlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
 		D090D3531BFD7B620075C72E /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D090D3541BFD7B620075C72E /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		D090D3571BFDAE910075C72E /* UIViewController+LeftSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LeftSlideMenu.h"; sourceTree = "<group>"; };
-		D090D3581BFDAE910075C72E /* UIViewController+LeftSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LeftSlideMenu.m"; sourceTree = "<group>"; };
+		D090D3571BFDAE910075C72E /* UIViewController+SlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SlideMenu.h"; sourceTree = "<group>"; };
+		D090D3581BFDAE910075C72E /* UIViewController+SlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SlideMenu.m"; sourceTree = "<group>"; };
 		D090D35A1BFDD53A0075C72E /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		D090D35B1BFDD53A0075C72E /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
+		D0C6A3EC1F8B607F000FABF9 /* RightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		D0C6A3ED1F8B607F000FABF9 /* RightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				D090D3541BFD7B620075C72E /* HomeViewController.m */,
 				D090D32E1BFD65530075C72E /* LeftViewController.h */,
 				D090D32F1BFD65530075C72E /* LeftViewController.m */,
+				D0C6A3EC1F8B607F000FABF9 /* RightViewController.h */,
+				D0C6A3ED1F8B607F000FABF9 /* RightViewController.m */,
 				D090D35A1BFDD53A0075C72E /* PushViewController.h */,
 				D090D35B1BFDD53A0075C72E /* PushViewController.m */,
 				D090D3341BFD65530075C72E /* Assets.xcassets */,
@@ -125,10 +130,10 @@
 		D090D3561BFDAE700075C72E /* LeftSlideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				D090D3501BFD700C0075C72E /* LeftSlideMenuViewController.h */,
-				D090D3511BFD700C0075C72E /* LeftSlideMenuViewController.m */,
-				D090D3571BFDAE910075C72E /* UIViewController+LeftSlideMenu.h */,
-				D090D3581BFDAE910075C72E /* UIViewController+LeftSlideMenu.m */,
+				D090D3501BFD700C0075C72E /* SlideMenuViewController.h */,
+				D090D3511BFD700C0075C72E /* SlideMenuViewController.m */,
+				D090D3571BFDAE910075C72E /* UIViewController+SlideMenu.h */,
+				D090D3581BFDAE910075C72E /* UIViewController+SlideMenu.m */,
 			);
 			name = LeftSlideMenu;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 					D090D3241BFD65530075C72E = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = D4GSYVE6CN;
+						ProvisioningStyle = Manual;
 					};
 					D090D33D1BFD65530075C72E = {
 						CreatedOnToolsVersion = 7.1;
@@ -232,11 +238,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D090D3521BFD700C0075C72E /* LeftSlideMenuViewController.m in Sources */,
+				D090D3521BFD700C0075C72E /* SlideMenuViewController.m in Sources */,
 				D090D3301BFD65530075C72E /* LeftViewController.m in Sources */,
-				D090D3591BFDAE910075C72E /* UIViewController+LeftSlideMenu.m in Sources */,
+				D090D3591BFDAE910075C72E /* UIViewController+SlideMenu.m in Sources */,
 				D090D32D1BFD65530075C72E /* AppDelegate.m in Sources */,
 				D090D3551BFD7B620075C72E /* HomeViewController.m in Sources */,
+				D0C6A3EE1F8B607F000FABF9 /* RightViewController.m in Sources */,
 				D090D35C1BFDD53A0075C72E /* PushViewController.m in Sources */,
 				D090D32A1BFD65530075C72E /* main.m in Sources */,
 			);
@@ -347,11 +354,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = D4GSYVE6CN;
 				INFOPLIST_FILE = CustomLeftSideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysoft.CustomLeftSideMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d0f41a91-6a64-4ae7-990e-edb3c9598165";
+				PROVISIONING_PROFILE_SPECIFIER = mysoft_99_dev_wildcard;
 			};
 			name = Debug;
 		};
@@ -361,11 +372,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CustomLeftSideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysoft.CustomLeftSideMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

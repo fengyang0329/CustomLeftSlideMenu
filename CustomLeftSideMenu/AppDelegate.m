@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import "LeftSlideMenuViewController.h"
+#import "SlideMenuViewController.h"
 #import "LeftViewController.h"
+#import "RightViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,8 +26,9 @@
     
     HomeViewController *homeCtr = [[HomeViewController alloc] init];
     LeftViewController *leftCtr = [[LeftViewController alloc] init];
+    RightViewController *rightCtr = [[RightViewController alloc] init];
     _navigationController = [[UINavigationController alloc] initWithRootViewController:homeCtr];
-    LeftSlideMenuViewController *leftSlideMenu = [[LeftSlideMenuViewController alloc] initWithContentViewController:_navigationController LeftMenuViewController:leftCtr];
+    SlideMenuViewController *leftSlideMenu = [[SlideMenuViewController alloc] initWithContentViewController:_navigationController LeftMenuViewController:leftCtr RightMenuViewController:rightCtr];
     leftSlideMenu.backgroundImage = [UIImage imageNamed:@"bgScaleImage"];
     leftSlideMenu.scaleBackgroundImageView = YES;//是否开启背景图缩放动画
     self.window.rootViewController = leftSlideMenu;

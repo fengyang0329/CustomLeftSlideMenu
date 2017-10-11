@@ -6,7 +6,7 @@
 //  Copyright © 2015年 Peter. All rights reserved.
 //
 
-#import "UIViewController+LeftSlideMenu.h"
+#import "UIViewController+SlideMenu.h"
 
 
 NSString *const LeftSlideMenuWillShowNotification   = @"LeftSlideMenuWillShowNotification";
@@ -14,17 +14,22 @@ NSString *const LeftSlideMenuDidShowNotification    = @"LeftSlideMenuDidShowNoti
 NSString *const LeftSlideMenuWillHideNotification   = @"LeftSlideMenuWillHideNotification";
 NSString *const LeftSlideMenuDidHideNotification    = @"LeftSlideMenuDidHideNotification";
 
+NSString *const RightSlideMenuWillShowNotification   = @"RightSlideMenuWillShowNotification";
+NSString *const RightSlideMenuDidShowNotification    = @"RightSlideMenuDidShowNotification";
+NSString *const RightSlideMenuWillHideNotification   = @"RightSlideMenuWillHideNotification";
+NSString *const RightSlideMenuDidHideNotification    = @"RightSlideMenuDidHideNotification";
 
-@implementation UIViewController (LeftSlideMenu)
 
-- (LeftSlideMenuViewController *)sideMenuViewController
+@implementation UIViewController (SlideMenu)
+
+- (SlideMenuViewController *)sideMenuViewController
 {
     UIViewController *iter = self.parentViewController;
     while (iter)
     {
-        if ([iter isKindOfClass:[LeftSlideMenuViewController class]])
+        if ([iter isKindOfClass:[SlideMenuViewController class]])
         {
-            return (LeftSlideMenuViewController *)iter;
+            return (SlideMenuViewController *)iter;
         }
         else if (iter.parentViewController && iter.parentViewController != iter)
         {
@@ -43,8 +48,12 @@ NSString *const LeftSlideMenuDidHideNotification    = @"LeftSlideMenuDidHideNoti
 {
     [self.sideMenuViewController showLeftMenuViewController];
 }
+- (void)showRightMenuViewController
+{
+    [self.sideMenuViewController showRightMenuViewController];
+}
 
-- (void)pushLeftMenuViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (void)pushMenuViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (!viewController) {
         return;

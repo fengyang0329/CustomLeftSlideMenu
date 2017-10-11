@@ -1,39 +1,38 @@
 //
-//  ViewController.m
+//  RightViewController.m
 //  CustomLeftSideMenu
 //
-//  Created by 龙章辉 on 15/11/19.
-//  Copyright © 2015年 Peter. All rights reserved.
+//  Created by 龙章辉 on 2017/10/9.
+//  Copyright © 2017年 Peter. All rights reserved.
 //
 
-#import "LeftViewController.h"
+#import "RightViewController.h"
 #import "PushViewController.h"
 #import "UIViewController+SlideMenu.h"
-#import "AppDelegate.h"
 
-@interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface RightViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView *tableView;
 @end
 
-@implementation LeftViewController
+@implementation RightViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    
     _tableView = [[UITableView alloc] init];
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.tableFooterView = [UIView new];
     [_tableView setBackgroundColor:[UIColor clearColor]];
-//    _tableView.layer.shouldRasterize = YES;
+    //    _tableView.layer.shouldRasterize = YES;
     [self.view addSubview:_tableView];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
 }
-
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -54,10 +53,10 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"cell%zi",indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"cell%zi",indexPath.row+100];
     cell.textLabel.font = [UIFont systemFontOfSize:18.0];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.textColor = [UIColor redColor];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
@@ -67,7 +66,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     PushViewController *ctr = [[PushViewController alloc] init];
-    ctr.title = [NSString stringWithFormat:@"cell%zi",indexPath.row];
+    ctr.title = [NSString stringWithFormat:@"cell%zi",indexPath.row+100];
     [self pushMenuViewController:ctr animated:YES];
 }
 
@@ -76,5 +75,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
