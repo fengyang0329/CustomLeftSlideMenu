@@ -221,18 +221,8 @@
         [self postNSNotification:LeftSlideMenuDidShowNotification];
         [_leftMenuViewController endAppearanceTransition];
     }];
-    [self addLock];
     
 }
-- (void)addLock
-{
-    isLock = YES;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        isLock = NO;
-    });
-}
-
 - (void)showRightMenuViewController
 {
     [self showRightMenuViewControllerWithAnimationDuration:_animationDuration];
@@ -274,7 +264,6 @@
         [self postNSNotification:RightSlideMenuDidShowNotification];
         [_leftMenuViewController endAppearanceTransition];
     }];
-    [self addLock];
 }
 
 - (void)hideMenuViewController
@@ -317,7 +306,6 @@
         [self removeContentCoverView];
         [self postNSNotification:_isShowLeft?LeftSlideMenuDidHideNotification:RightSlideMenuDidHideNotification];
     }];
-    [self addLock];
 }
 
 - (void)addContentCoverView
@@ -383,6 +371,7 @@
                 return YES;
             } else {
                 //超出侧滑区域
+                NSLog(@"/超出侧滑区域");
                 return NO;
             }
             
@@ -392,6 +381,7 @@
                 
                 return YES;
             }
+                NSLog(@"/////超出侧滑区域");
             return NO;
         }
         
@@ -402,9 +392,18 @@
 #pragma mark 滑动手势
 - (void)handlePanGesture:(UIPanGestureRecognizer *)pangesture
 {
-    CGFloat velocity = [pangesture velocityInView:self.view].x;
+//    CGFloat velocity = [pangesture velocityInView:self.view].x;
     CGPoint point = [pangesture translationInView:self.view];
     NSInteger _isLeft = 0;
+    static NSInteger beforeIndex;
+    if (beforeIndex == 2 && _visible && point.x < 0) {
+        
+        return;
+    }
+    if (beforeIndex == 1 && _visible && point.x > 0) {
+        
+        return;
+    }
     if ((!_visible && point.x >0) || (_visible && point.x < 0)) {
         
         //操作LeftViewController
@@ -413,49 +412,11 @@
         
         _isLeft = 2;
     }
-    if (!self.panGestureEnabled
-        || (_visible && !_isShowLeft && point.x <0)
-        || (_visible && _isShowLeft && point.x >0)
-        || _isLeft == 0
-        || isLock)
-    {
-        return;
-    }
+    beforeIndex = _isLeft;
 //    NSLog(@"pointX:%f",point.x);
     CGFloat menuProportion = 0;
     if (_isLeft == 1) {
-        
-        if (!_leftMenuViewController || beforeTag == 2) {
-            
-            return;
-        }
-        // 禁止在主界面的时候向左滑动
-        if (!_visible && point.x < 0)
-        {
-            
-//                    NSLog(@"禁止在主界面的时候向左滑动");
-            [self hideMenuViewControllerWithAnimationDuration:0];
-            return;
-        }
-        //禁止在menu显示到最大的时候向右滑动
-        if (_contentViewContainer.center.x >= _contentMaxCentreX && point.x>0 && _visible)
-        {
-//                    NSLog(@"禁止在menu显示到最大的时候向右滑动");
-            [self showLeftMenuViewControllerWithAnimationDuration:0];
-            return;
-        }
-        if (velocity >= 800 && !_visible)
-        {
-//                    NSLog(@"手速太快，直接显示");
-            [self showLeftMenuViewController];
-            return;
-        }
-        else if (velocity <= -800 && _visible)
-        {
-//                    NSLog(@"手速太快，直接隐藏");
-            [self hideMenuViewController];
-            return;
-        }
+
         CGFloat dis = self.distanceVariable + point.x;
         // 当手势停止时执行操作
         if (pangesture.state == UIGestureRecognizerStateEnded)
@@ -471,7 +432,6 @@
                 CGFloat duration = CGRectGetMinX(_contentViewContainer.frame)/kScreenWidth*_animationDuration;
                 [self hideMenuViewControllerWithAnimationDuration:duration];
             }
-            NSLog(@"+++++++++++++++++++++");
             return;
         }
         if (pangesture.state == UIGestureRecognizerStateBegan)
@@ -519,33 +479,6 @@
     }else{
         
         if (!_rightMenuViewController || beforeTag == 1) {
-            return;
-        }
-        // 禁止在主界面的时候向右滑动
-        if (!_visible && point.x > 0)
-        {
-            
-//                    NSLog(@"禁止在主界面的时候向左滑动");
-            [self hideMenuViewControllerWithAnimationDuration:0];
-            return;
-        }
-        //禁止在menu显示到最大的时候向左滑动
-        if (_contentViewContainer.center.x <= _contentMinCentreX && point.x<0 && _visible)
-        {
-//                    NSLog(@"禁止在menu显示到最大的时候向右滑动");
-            [self showLeftMenuViewControllerWithAnimationDuration:0];
-            return;
-        }
-        if (velocity >= 800 && !_visible)
-        {
-//                    NSLog(@"手速太快，直接显示");
-            [self showRightMenuViewController];
-            return;
-        }
-        else if (velocity <= -800 && _visible)
-        {
-//                    NSLog(@"手速太快，直接隐藏");
-            [self hideMenuViewController];
             return;
         }
         CGFloat dis = self.distanceVariable - point.x;
